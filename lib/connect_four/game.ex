@@ -1,7 +1,7 @@
 defmodule ConnectFour.Game do
   use GenServer
 
-  defstruct uuid: "", players: [], moves: [], active_player: 1
+  defstruct uuid: "", players: [], moves: [], active_player: 1, winner: nil
 
   defmodule Move do
     defstruct player: 0, column: 0
