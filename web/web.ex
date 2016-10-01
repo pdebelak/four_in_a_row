@@ -1,12 +1,12 @@
-defmodule ConnectFour.Web do
+defmodule Four.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use ConnectFour.Web, :controller
-      use ConnectFour.Web, :view
+      use Four.Web, :controller
+      use Four.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -26,8 +26,8 @@ defmodule ConnectFour.Web do
     quote do
       use Phoenix.Controller
 
-      import ConnectFour.Router.Helpers
-      import ConnectFour.Gettext
+      import Four.Router.Helpers
+      import Four.Gettext
     end
   end
 
@@ -41,9 +41,9 @@ defmodule ConnectFour.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import ConnectFour.Router.Helpers
-      import ConnectFour.ErrorHelpers
-      import ConnectFour.Gettext
+      import Four.Router.Helpers
+      import Four.ErrorHelpers
+      import Four.Gettext
     end
   end
 
@@ -56,7 +56,7 @@ defmodule ConnectFour.Web do
   def channel do
     quote do
       use Phoenix.Channel
-      import ConnectFour.Gettext
+      import Four.Gettext
     end
   end
 

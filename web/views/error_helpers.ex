@@ -1,4 +1,4 @@
-defmodule ConnectFour.ErrorHelpers do
+defmodule Four.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule ConnectFour.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(ConnectFour.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(Four.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(ConnectFour.Gettext, "errors", msg, opts)
+      Gettext.dgettext(Four.Gettext, "errors", msg, opts)
     end
   end
 end

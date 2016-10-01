@@ -1,4 +1,4 @@
-defmodule ConnectFour.Board do
+defmodule Four.Board do
   def for_game(%{ moves: moves }) do
     for column <- 1..7 do
       moves_for_column(moves, column)

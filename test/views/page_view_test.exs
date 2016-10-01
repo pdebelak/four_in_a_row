@@ -1,3 +1,3 @@
-defmodule ConnectFour.PageViewTest do
-  use ConnectFour.ConnCase, async: true
+defmodule Four.PageViewTest do
+  use Four.ConnCase, async: true
 end

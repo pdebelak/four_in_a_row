@@ -1,4 +1,4 @@
-defmodule ConnectFour.GameSupervisor do
+defmodule Four.GameSupervisor do
   use Supervisor
 
   def start_link do
@@ -7,7 +7,7 @@ defmodule ConnectFour.GameSupervisor do
 
   def init(:ok) do
     children = [
-      worker(ConnectFour.Game, [[name: ConnectFour.Game]])
+      worker(Four.Game, [[name: Four.Game]])
     ]
 
     supervise(children, strategy: :one_for_one)

@@ -1,4 +1,4 @@
-defmodule ConnectFour.Game do
+defmodule Four.Game do
   use GenServer
 
   defstruct uuid: "", players: [], moves: [], active_player: 1, winner: nil

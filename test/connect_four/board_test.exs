@@ -1,8 +1,8 @@
-defmodule ConnectFour.BoardTest do
+defmodule Four.BoardTest do
   use ExUnit.Case, async: true
 
-  alias ConnectFour.Game
-  alias ConnectFour.Board
+  alias Four.Game
+  alias Four.Board
 
   test "for game is 7 empty lists for new game" do
     game = Game.start_game("foo", "bar")

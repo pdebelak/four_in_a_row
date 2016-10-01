@@ -1,3 +1,3 @@
-defmodule ConnectFour.LayoutViewTest do
-  use ConnectFour.ConnCase, async: true
+defmodule Four.LayoutViewTest do
+  use Four.ConnCase, async: true
 end

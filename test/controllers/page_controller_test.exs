@@ -1,5 +1,5 @@
-defmodule ConnectFour.PageControllerTest do
-  use ConnectFour.ConnCase
+defmodule Four.PageControllerTest do
+  use Four.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

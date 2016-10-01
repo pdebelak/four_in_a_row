@@ -1,3 +1,3 @@
-defmodule ConnectFour.PageView do
-  use ConnectFour.Web, :view
+defmodule Four.PageView do
+  use Four.Web, :view
 end

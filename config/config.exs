@@ -6,11 +6,11 @@
 use Mix.Config
 
 # Configures the endpoint
-config :connect_four, ConnectFour.Endpoint,
+config :four, Four.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "+nD/U/5D97cKeU1+HfqQ7o5o5weIf4ny6NtV102PoutSkJ8umZ76YmNC28BxuRXf",
-  render_errors: [view: ConnectFour.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: ConnectFour.PubSub,
+  render_errors: [view: Four.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Four.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

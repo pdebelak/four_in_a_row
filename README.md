@@ -1,4 +1,4 @@
-# ConnectFour
+# Four in a row
 
 To start your Phoenix app:
 

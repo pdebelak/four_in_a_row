@@ -1,3 +1,3 @@
-defmodule ConnectFour.LayoutView do
-  use ConnectFour.Web, :view
+defmodule Four.LayoutView do
+  use Four.Web, :view
 end

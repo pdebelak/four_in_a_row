@@ -1,5 +1,5 @@
-defmodule ConnectFour.Router do
-  use ConnectFour.Web, :router
+defmodule Four.Router do
+  use Four.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,14 +13,14 @@ defmodule ConnectFour.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", ConnectFour do
+  scope "/", Four do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ConnectFour do
+  # scope "/api", Four do
   #   pipe_through :api
   # end
 end

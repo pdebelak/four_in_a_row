@@ -1,5 +1,5 @@
-defmodule ConnectFour.ErrorView do
-  use ConnectFour.Web, :view
+defmodule Four.ErrorView do
+  use Four.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"

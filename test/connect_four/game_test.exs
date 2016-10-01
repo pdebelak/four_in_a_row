@@ -1,7 +1,7 @@
-defmodule ConnectFour.GameTest do
+defmodule Four.GameTest do
   use ExUnit.Case, async: true
 
-  alias ConnectFour.Game
+  alias Four.Game
 
   test "it starts a game with uuid and player names" do
     player1_name = "foo"
