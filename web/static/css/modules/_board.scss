@@ -1,0 +1,34 @@
+.board {
+  width: 100%;
+  display: flex;
+  background-color: $board-color;;
+}
+
+.board--col {
+  display: flex;
+  flex-direction: column-reverse;
+  box-sizing: border-box;
+  padding: 10px;
+  width: $container-width / 7;
+  .active &:hover {
+    background-color: darken($board-color, 15%);
+    cursor: pointer;
+  }
+}
+
+.board--item {
+  box-sizing: border-box;
+  border-radius: 100%;
+  background-color: $body-bg;
+  width: 100%;
+  padding-top: 100%;
+  margin: 5px 0;
+}
+
+.board--item__player-1 {
+  background-color: $player-1-color;
+}
+
+.board--item__player-2 {
+  background-color: $player-2-color;
+}
