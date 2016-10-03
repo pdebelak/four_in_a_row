@@ -8,7 +8,7 @@ export default class extends React.Component {
   itemClass(item) {
     const defaultClass = 'board--item';
     if (item === null) { return defaultClass; }
-    if (item === 1) { return `${defaultClass} ${defaultClass}__player-1`; }
+    if (item === '1') { return `${defaultClass} ${defaultClass}__player-1`; }
     return `${defaultClass} ${defaultClass}__player-2`;
   }
 

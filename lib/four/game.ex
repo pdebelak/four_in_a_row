@@ -1,6 +1,8 @@
 defmodule Four.Game do
   use GenServer
 
+  alias Four.Board
+
   defstruct uuid: "", players: [], moves: [], active_player: 1, winner: nil
 
   defmodule Move do
@@ -27,27 +29,7 @@ defmodule Four.Game do
     GenServer.call(__MODULE__, {:move, uuid, move})
   end
 
-  # GenServer callbacks
-
-  def start_link(_opts \\ []) do
-    GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
-  end
-
-  def init(_args) do
-    :ets.new(@name, [:named_table, :set, :private])
-
-    {:ok, %{}}
-  end
-
-  def handle_call({:new, player1, player2}, _from, state) do
-    {:reply, initiate_game(player1, player2), state}
-  end
-  def handle_call({:find, uuid}, _from, state) do
-    {:reply, find_game(uuid), state}
-  end
-  def handle_call({:move, uuid, move}, _from, state) do
-    {:reply, move_game(uuid, move), state}
-  end
+  def with_board(game), do: %{ game: game, board: Board.for_game(game) }
 
   defp initiate_game(player1, player2) do
     uuid = UUID.uuid4()
@@ -113,5 +95,26 @@ defmodule Four.Game do
     moves |>
     Enum.filter(fn (move) -> move.column == column end) |>
     length() <= 6
+  end
+
+  # GenServer callbacks
+
+  def start_link(_opts \\ []) do
+    GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
+  end
+
+  def init(_args) do
+    :ets.new(@name, [:named_table, :set, :private])
+    {:ok, %{}}
+  end
+
+  def handle_call({:new, player1, player2}, _from, state) do
+    {:reply, initiate_game(player1, player2), state}
+  end
+  def handle_call({:find, uuid}, _from, state) do
+    {:reply, find_game(uuid), state}
+  end
+  def handle_call({:move, uuid, move}, _from, state) do
+    {:reply, move_game(uuid, move), state}
   end
 end

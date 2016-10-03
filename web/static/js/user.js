@@ -6,7 +6,7 @@ export default class extends React.Component {
   componentDidMount() {
     qwest.post('/games', {})
       .then((_, response) =>
-        browserHistory.push(`/game/${response.game.uuid}`)
+        browserHistory.push(`/game/${response.game.uuid}?player=${this.props.location.query.player}`)
       );
   }
 

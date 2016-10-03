@@ -22,7 +22,9 @@ defmodule Four.GameController do
 
   def update(conn, %{"id" => id, "column" => column, "player" => player}) do
     case Game.move(id, %{column: column, player: player}) do
-      {:ok, game} -> render(conn, "show.json", game: game)
+      {:ok, game} ->
+        Four.Endpoint.broadcast! "game:#{id}", "new_move", Game.with_board(game)
+        render(conn, "show.json", game: game)
       {:error, message} ->
         conn |>
         put_status(:bad_request) |>

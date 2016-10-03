@@ -1,10 +1,10 @@
 defmodule Four.GameView do
   use Four.Web, :view
 
-  alias Four.Board
+  alias Four.Game
 
   def render("show.json", %{game: game}) do
-    %{game: game, board: Board.for_game(game)}
+    Game.with_board(game)
   end
 
   def render("error.json", %{message: message}) do

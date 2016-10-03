@@ -2,7 +2,7 @@ defmodule Four.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", Four.RoomChannel
+  channel "game:*", Four.GameChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
