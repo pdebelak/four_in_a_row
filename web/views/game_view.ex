@@ -1,13 +1,19 @@
 defmodule Four.GameView do
   use Four.Web, :view
+  @column_size 7
 
-  alias Four.Game
+  alias Four.Board
 
-  def render("show.json", %{game: game}) do
-    Game.with_board(game)
+  def render_board(conn, game) do
+    Four.BoardView.render_board(conn, game)
   end
 
-  def render("error.json", %{message: message}) do
-    %{error: message}
+  def player_names(game) do
+    [player1, player2] = game.players
+    "#{player1.name} vs. #{player2.name}"
+  end
+
+  def active_player(game) do
+
   end
 end

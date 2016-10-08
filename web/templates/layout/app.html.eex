@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Play against an opponent to get four in a row.">
+    <meta name="token" content="<%= get_csrf_token %>">
 
     <title>Four in a row</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">

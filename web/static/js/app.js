@@ -19,12 +19,4 @@ import 'phoenix_html';
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Four from './four';
-
-ReactDOM.render(
-  <Four />,
-  document.getElementById('app')
-);
+import './move';

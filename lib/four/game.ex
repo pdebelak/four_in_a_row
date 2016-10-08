@@ -3,7 +3,7 @@ defmodule Four.Game do
 
   alias Four.Board
 
-  defstruct uuid: "", players: [], moves: [], active_player: 1, winner: nil
+  defstruct uuid: "", players: [], moves: [], active_player: nil, winner: nil
 
   defmodule Move do
     defstruct player: 0, column: 0
@@ -43,7 +43,8 @@ defmodule Four.Game do
       players: [
         %__MODULE__.Player{ player: 1, name: player1 },
         %__MODULE__.Player{ player: 2, name: player2 },
-      ]
+      ],
+      active_player: %__MODULE__.Player{ player: 1, name: player1 }
     }
   end
 
@@ -82,14 +83,18 @@ defmodule Four.Game do
     end
   end
 
-  defp alternate_player(%{ active_player: 1 }), do: 2
-  defp alternate_player(%{ active_player: 2 }), do: 1
+  defp alternate_player(%{ active_player: %{ player: 1 }, players: players }) do
+    Enum.find(players, fn (player) -> player.player == 2 end)
+  end
+  defp alternate_player(%{ active_player: %{ player: 2 }, players: players }) do
+    Enum.find(players, fn (player) -> player.player == 1 end)
+  end
 
   defp valid_move?(move, game) do
     valid_player?(move, game) && valid_column?(move, game)
   end
 
-  defp valid_player?(%{ player: player }, %{ active_player: active_player }), do: player != active_player
+  defp valid_player?(%{ player: player }, %{ active_player: active_player }), do: player != active_player.player
 
   defp valid_column?(%{ column: column }, %{ moves: moves }) do
     moves |>
@@ -117,4 +122,8 @@ defmodule Four.Game do
   def handle_call({:move, uuid, move}, _from, state) do
     {:reply, move_game(uuid, move), state}
   end
+end
+
+defimpl Phoenix.Param, for: Four.Game do
+    def to_param(game), do: game.uuid
 end

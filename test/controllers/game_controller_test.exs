@@ -3,36 +3,33 @@ defmodule Four.GameControllerTest do
 
   alias Four.Game
 
-  setup %{conn: conn} do
-    {:ok, conn: put_req_header(conn, "accept", "application/json")}
-  end
-
   test "shows chosen game", %{conn: conn} do
     game = Game.start_game("foo", "bar")
-    conn = get conn, "/games/#{game.uuid}"
-    assert json_response(conn, 200)["game"]["uuid"] == game.uuid
+    conn = conn |>
+    assign(:player, %{ name: "foo", player: 1 }) |>
+    get("/games/#{game.uuid}")
+    assert html_response(conn, 200) =~ hd(game.players).name
   end
 
   test "404s with error when game not found", %{conn: conn} do
-    conn = get conn, "/games/blah"
-    assert json_response(conn, 404)["error"] == "No game found"
+    assert_raise Four.GameController.NoGameError, fn -> get conn, "/games/blah" end
   end
 
-  test "creates and renders resource when data is valid", %{conn: conn} do
+  test "creates and redirects to show", %{conn: conn} do
     conn = post conn, "/games"
-    assert json_response(conn, 201)["game"]["uuid"]
+    assert redirected_to(conn) =~ "/games/"
   end
 
   test "makes a move with valid move", %{conn: conn} do
     game = Game.start_game("foo", "bar")
-    conn = put conn, "/games/#{game.uuid}", %{ "column": 1, "player": game.active_player }
-    assert json_response(conn, 200)["game"]["uuid"] == game.uuid
-    assert json_response(conn, 200)["board"] == [[1], [], [], [], [], [], []]
+    conn = conn |>
+    assign(:player, %{ name: "foo", player: 1 }) |>
+    put("/games/#{game.uuid}", %{ "column" => 1  })
+    assert html_response(conn, 200) =~ hd(game.players).name
   end
 
-  test "gives error message with invalid move", %{conn: conn} do
+  test "gives error with invalid move", %{conn: conn} do
     game = Game.start_game("foo", "bar")
-    conn = put conn, "/games/#{game.uuid}", %{ "column": 1, "player": game.active_player + 1 }
-    assert json_response(conn, 400)["error"] == "Invalid move"
+    assert_raise Four.GameController.InvalidMoveError, fn -> put conn, "/games/#{game.uuid}", %{ "column": 8 } end
   end
 end

@@ -1,0 +1,2 @@
+<h1><%= player_names(@game) %></h1>
+<%= render_board(@conn, @game) %>

@@ -1,6 +1,8 @@
 defmodule Four.GameChannel do
   use Phoenix.Channel
 
+  intercept ["new_move"]
+
   def join("game:" <> _id, _params, socket) do
     {:ok, socket}
   end

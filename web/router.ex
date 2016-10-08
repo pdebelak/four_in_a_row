@@ -11,15 +11,13 @@ defmodule Four.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-
-    resources "/games", Four.GameController, except: [:index, :new, :edit, :delete]
   end
 
   scope "/", Four do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/game/:id", PageController, :index
+    resources "/games", GameController, except: [:index, :new, :edit, :delete]
   end
 
   # Other scopes may use custom stacks.

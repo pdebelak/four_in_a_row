@@ -32,7 +32,7 @@ defmodule Four.GameTest do
 
   test "starts with player 1 as active player" do
     %{ active_player: active_player } = Game.start_game("foo", "bar")
-    assert active_player == 1
+    assert active_player == %Game.Player{ name: "foo", player: 1 }
   end
 
   test "it can move" do
@@ -55,7 +55,7 @@ defmodule Four.GameTest do
   test "it changes the active player" do
     %{ uuid: uuid } = Game.start_game("foo", "bar")
     {:ok, game} = Game.move(uuid, %{ player: 1, column: 2 })
-    assert game.active_player == 2
+    assert game.active_player == %Game.Player{ name: "bar", player: 2 }
   end
 
   test "move with bad uuid" do

@@ -1,1 +1,3 @@
-<div id="app"></div>
+<%= form_for @conn, game_path(@conn, :create), [as: :create, method: :post], fn f -> %>
+  <%= submit "Start Game" %>
+<% end %>
